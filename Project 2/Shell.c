@@ -145,15 +145,10 @@ int main () {
 					else if(access(temp2,F_OK) == 0){
 					 	
 					 }
-					
-					if (temp == PathName)
-						break;
-						
 					temp = strtok(NULL, ":");
 					
 					if(temp == NULL){
-						getcwd(PathName, PATH_MAX);
-						temp = PathName;
+						break;
 					}
 					strcpy(temp2, temp);
 					strcat(temp2,shortPath);
@@ -187,7 +182,8 @@ int main () {
 		}	
 		
 	}//end of the while loop
-	
+	free(shortPath);
 	free(command->name);
+	free(command);
 	return 0;	
 }
