@@ -6,6 +6,7 @@
 #include <linux/limits.h>
 #include <sys/types.h>
 
+// Command struct
 struct command_t { 
 	char *name;
 	int argc;
@@ -33,13 +34,13 @@ int main () {
 	
 	while(1) //Continuously run the command line unless "exit" is entered.
 	{	
-		int k=0;
 		// Read the command line and parse it
+		int k=0;
 		
 		char Path [PATH_MAX];
 		
 		do{		
-				//Print the prompt String
+			//Print the prompt String
 			printf("%s:~",CompName);
 			if (getcwd(PathName, PATH_MAX) == NULL){
 				perror("getcwd() error");
@@ -62,8 +63,6 @@ int main () {
 			Args = command->name;
 		}	
 		
-		
-		
 		//Parsing arguments	
 		while(Args != NULL){
 			
@@ -80,16 +79,14 @@ int main () {
 			
 		}
 		
-		else if (strcmp(command->name,"exit") == 0 ){
-			
+		else if (strcmp(command->name,"exit") == 0 ){	
 			free(command->argv[0]);
 			break;
 		}
 		
 		
 		
-		else if (strcmp(command->name,"cd") == 0 ){
-			
+		else if (strcmp(command->name,"cd") == 0 ){	
 			int ret;
 			if(command->argc < 2) {
 				chdir(getenv("HOME"));
@@ -109,15 +106,11 @@ int main () {
 			unsetenv(command->argv[1]);
 		}
 		else if (strcmp(command->argv[0],"get")==0){
-			getenv(command->argv[1]);
+			printf("%s\n",getenv(command->argv[1]));
 		}
 		
-		
 		//If it is not an instruction to be run by the parent, fork a child
-		else {
-		
-			
-			
+		else {	
 			childPID = fork();
 			
 			if(childPID == 0){
