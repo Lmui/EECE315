@@ -100,7 +100,16 @@ int main () {
 					printf("No such file or directory found\n");
 				}	
 			}
-			
+				
+		}
+		else if(strcmp(command->argv[0],"set")==0){
+			setenv(command->argv[1],command->argv[2],1);
+		}
+		else if (strcmp(command->argv[0],"del")==0){
+			unsetenv(command->argv[1]);
+		}
+		else if (strcmp(command->argv[0],"get")==0){
+			getenv(command->argv[1]);
 		}
 		
 		
