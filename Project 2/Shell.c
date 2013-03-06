@@ -168,11 +168,10 @@ int main () {
 			}	
 		
 			// Parent waits until child finishes executing command if a & is not found at end of command
-		
 			else{
-				//if(!(strcmp(command->argv[(command->argc)-1], "&"))){
+				if(!(strcmp(command->argv[(command->argc)-1], "&") == 0)){
 					wait();
-				//}
+				} // else printf("a process is running in the background\n");
 			}	
 		}
 		
