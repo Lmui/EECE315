@@ -138,10 +138,17 @@ int main () {
 					else if(access(temp2,F_OK) == 0){
 					 	
 					 }
+					// This is how we make the shell to run a program in the current directory
+					if (temp == PathName) // The last place we check is the current directory						
+						break;	
+
 					temp = strtok(NULL, ":");
 					
+					// if we run out of path name but still could not find the
+					// program that we want to run, check in the current directory.
 					if(temp == NULL){
-						break;
+						getcwd(PathName, PATH_MAX);
+						temp = PathName;
 					}
 					strcpy(temp2, temp);
 					strcat(temp2,shortPath);
